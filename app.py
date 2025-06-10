@@ -9,7 +9,6 @@ import plotly.express as px
 st.set_page_config(
     page_title="Dashboard de Posgrados por Ingeniería",
     page_icon="📊",
-    layout="centered",
     initial_sidebar_state="auto"
 )
 
