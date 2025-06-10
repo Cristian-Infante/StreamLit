@@ -218,36 +218,7 @@ with tab1:
         st.dataframe(df_detalles, use_container_width=True)
 
     st.markdown("---")
-
-    # --------------------------------------------------------------
-    # 3) Box Plot: comparar número de posgrados por Pregrado
-    # --------------------------------------------------------------
-    st.subheader("📦 Box Plot: Número de Posgrados por Pregrado")
-    perfil_to_pregrado = {}
-    for perfil in raw_profiles:
-        uid = perfil.get('id')
-        educ = perfil.get('education', [])
-        pre_actual = None
-        for e in educ:
-            if e.get('degree2') == 'Pregrado' and e.get('degree') in datos["pregrados_interes"]:
-                pre_actual = e.get('degree')
-                break
-        perfil_to_pregrado[uid] = pre_actual
-
-    df_box = df_hist.copy()
-    df_box["Pregrado"] = df_box["id"].map(perfil_to_pregrado)
-    df_box = df_box[df_box["Pregrado"].notnull()]
-
-    fig_box = px.box(
-        df_box,
-        x="Pregrado",
-        y="total_pos",
-        title="Box Plot: Número de Posgrados según Pregrado de Interés",
-        labels={"total_pos": "Cantidad de Posgrados", "Pregrado": "Pregrado"}
-    )
-    st.plotly_chart(fig_box, use_container_width=True)
-    st.markdown("---")
-
+    
     # --------------------------------------------------------------
     # 4) Gráfico de barras: estudiantes por Pregrado
     # --------------------------------------------------------------
